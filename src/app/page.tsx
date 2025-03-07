@@ -2,8 +2,6 @@
 import { useMutation, useQuery } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { useState } from "react";
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import "./globals.css"
 
 export default function Home() {

@@ -6,4 +6,8 @@ export default defineSchema({
     text: v.string(),
     completed: v.boolean(),
   }),
+  users: defineTable({
+    email: v.string(),
+    clerkId: v.string(),
+  }).index("by_email", ["email"])
 });

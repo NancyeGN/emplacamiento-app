@@ -20,7 +20,7 @@ import ListUsers from "@/app/create-user/components/listUsers";
 export default function Page() {
   const { isLoaded } = useSignUp();
   const createUser = useAction(api.functions.createUser);
-  const users = useQuery(api.users.get);
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

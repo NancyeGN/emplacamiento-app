@@ -5,7 +5,6 @@ import { api } from "../../../../convex/_generated/api";
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,

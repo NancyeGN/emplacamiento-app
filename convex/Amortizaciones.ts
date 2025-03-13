@@ -6,3 +6,11 @@ export const getAmortizacion = query(async ({ db }, { activoId }: { activoId: Id
   const amortizaciones = await db.query("amortizaciones").withIndex("byActivoId", q => q.eq("activoId", activoId)).collect();
   return amortizaciones;
 });
+
+export const getAmortizacionByActivo = query(
+  async ({ db }, { activoId }: { activoId: Id<"activos"> }) => {
+    return await db.query("amortizaciones")
+      .withIndex("byActivoId", q => q.eq("activoId", activoId))
+      .collect();
+  }
+);

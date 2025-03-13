@@ -1,4 +1,5 @@
-import { mutation, query } from "./_generated/server";
+import { mutation } from "./_generated/server";
+
 
 export const generarAmortizacion = mutation(async ({ db }) => {
   const activos = await db.query("activos").collect();
@@ -29,3 +30,5 @@ export const generarAmortizacion = mutation(async ({ db }) => {
     }
   }
 });
+
+

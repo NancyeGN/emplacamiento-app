@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../convex/_generated/api";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -19,14 +19,19 @@ type Activo = {
 
 export default function ActivosTable({ onSelect }: { onSelect: (id: Id<"activos">) => void }) {
   const activos = useQuery(api.activos.getAllActivos);
+  const updatePlazo = useMutation(api.activos.updatePlazo);
 
   if (!activos) return <p>Cargando activos...</p>;
+
+  const handlePlazoChange = (activoId: Id<"activos">, nuevoPlazo: number) => {
+    updatePlazo({ activoId, nuevoPlazo });
+  };
 
   const columnDefs: ColDef<Activo>[] = [
     { headerName: "Nombre", field: "nombre", sortable: true, filter: true },
     { headerName: "Monto", field: "monto", valueFormatter: (p: ValueFormatterParams<Activo>) => `$${p.value.toFixed(2)}`, sortable: true },
     { headerName: "Tasa de Interés", field: "tasaInteres", valueFormatter: (p: ValueFormatterParams<Activo>) => `${p.value.toFixed(2)}%`, sortable: true },
-    { headerName: "Plazo (meses)", field: "plazoMeses", sortable: true },
+    { headerName: "Plazo (meses)", field: "plazoMeses", editable: true, onCellValueChanged: ({ data, newValue }) => handlePlazoChange(data._id, Number(newValue)), },
   ];
 
   return (

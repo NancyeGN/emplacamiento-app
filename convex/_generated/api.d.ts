@@ -13,9 +13,12 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as activos from "../activos.js";
+import type * as Amortizaciones from "../Amortizaciones.js";
 import type * as functions from "../functions.js";
+import type * as generarAmortizacion from "../generarAmortizacion.js";
+import type * as insertActivos from "../insertActivos.js";
 import type * as registerUser from "../registerUser.js";
-import type * as tasks from "../tasks.js";
 import type * as users from "../users.js";
 
 /**
@@ -27,9 +30,12 @@ import type * as users from "../users.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  activos: typeof activos;
+  Amortizaciones: typeof Amortizaciones;
   functions: typeof functions;
+  generarAmortizacion: typeof generarAmortizacion;
+  insertActivos: typeof insertActivos;
   registerUser: typeof registerUser;
-  tasks: typeof tasks;
   users: typeof users;
 }>;
 export declare const api: FilterApi<

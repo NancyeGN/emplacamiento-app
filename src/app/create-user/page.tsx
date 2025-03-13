@@ -1,5 +1,5 @@
 "use client";
-import { useAction } from "convex/react";
+import { useAction, useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { useState } from "react";
 import { useSignUp } from "@clerk/nextjs";
@@ -13,10 +13,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import ListUsers from "@/app/create-user/components/listUsers";
+
 
 export default function Page() {
   const { isLoaded } = useSignUp();
   const createUser = useAction(api.functions.createUser);
+  const users = useQuery(api.users.get);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -97,6 +109,8 @@ export default function Page() {
             </form>
           </CardContent>
         </Card>
+        <div className="h-8"></div>
+        <ListUsers />
       </main>
 
       <footer className="flex w-full items-center justify-center bg-gray-100 py-6 dark:bg-gray-800">
